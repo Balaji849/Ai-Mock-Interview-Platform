@@ -119,12 +119,32 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;  
+    scroll-behavior:smooth;
   }
-  body {
-    @apply bg-background text-foreground;
+}
+
+body .cl-internal-b8hinb {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+@media (max-width: 640px) {
+  body .cl-internal-b8hinb {
+    grid-template-columns: 1fr !important;
   }
-  html {
-    @apply font-sans;
+}
+
+
+
+
+
+
+
+/* Mobile fix (remove scale) */
+@media (max-width: 640px) {
+  .cl-internal-b8hinb > div:nth-child(3) {
+    transform: scale(1);
   }
 }
