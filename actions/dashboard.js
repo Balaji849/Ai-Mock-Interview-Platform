@@ -3,12 +3,17 @@
 import { db } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
+import { Resend } from "resend";
+import { render } from "@react-email/render";
+import { WithdrawalRequestEmail } from "@/emails/WithdrawalRequestEmail";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const ADMIN_EMAIL = "balajic721@gmail.com";
 
 export const setAvailability = async ({ startTime, endTime }) => {
-     const user = await currentUser();
+  const user = await currentUser();
   if (!user) throw new Error("Unauthorized");
 
-  
   const dbUser = await db.user.findUnique({ where: { clerkUserId: user.id } });
   if (!dbUser || dbUser.role !== "INTERVIEWER") throw new Error("Forbidden");
 
@@ -16,8 +21,8 @@ export const setAvailability = async ({ startTime, endTime }) => {
   if (new Date(startTime) >= new Date(endTime))
     throw new Error("Start time must be before end time");
 
-  try{
-     const existing = await db.availability.findFirst({
+  try {
+    const existing = await db.availability.findFirst({
       where: { interviewerId: dbUser.id, status: "AVAILABLE" },
     });
     if (existing) {
@@ -25,8 +30,7 @@ export const setAvailability = async ({ startTime, endTime }) => {
         where: { id: existing.id },
         data: { startTime: new Date(startTime), endTime: new Date(endTime) },
       });
-    } 
-    else {
+    } else {
       await db.availability.create({
         data: {
           interviewerId: dbUser.id,
@@ -36,17 +40,13 @@ export const setAvailability = async ({ startTime, endTime }) => {
         },
       });
     }
-     revalidatePath("/dashboard");
+    revalidatePath("/dashboard");
     return { success: true };
-
-  }
-  catch(error){
+  } catch (err) {
     console.error(err);
     throw new Error("Failed to save availability");
-
   }
-
-}
+};
 
 export const getAvailability = async () => {
   const user = await currentUser();
@@ -60,11 +60,8 @@ export const getAvailability = async () => {
   });
 };
 
-
-// ─── APPOINTMENTS ─────────────────────────────────────────────────────────────
-
 export const getInterviewerAppointments = async () => {
-    const user = await currentUser();
+  const user = await currentUser();
   if (!user) throw new Error("Unauthorized");
 
   const dbUser = await db.user.findUnique({ where: { clerkUserId: user.id } });
@@ -78,12 +75,10 @@ export const getInterviewerAppointments = async () => {
     },
     orderBy: { startTime: "desc" },
   });
-}
-
-// ─── EARNINGS / WITHDRAWAL ────────────────────────────────────────────────────
+};
 
 export const getInterviewerStats = async () => {
-    const user = await currentUser();
+  const user = await currentUser();
   if (!user) throw new Error("Unauthorized");
 
   const dbUser = await db.user.findUnique({
@@ -110,5 +105,89 @@ export const getInterviewerStats = async () => {
     totalEarned,
     completedSessions: dbUser.bookingsAsInterviewer.length,
   };
+};
 
-}
+export const requestWithdrawal = async ({
+  credits,
+  paymentMethod,
+  paymentDetail,
+}) => {
+  const user = await currentUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const dbUser = await db.user.findUnique({ where: { clerkUserId: user.id } });
+  if (!dbUser || dbUser.role !== "INTERVIEWER") throw new Error("Forbidden");
+
+  if (!credits || credits <= 0) throw new Error("Invalid credit amount");
+  if (credits > dbUser.creditBalance)
+    throw new Error("Insufficient credit balance");
+  if (!paymentMethod || !paymentDetail)
+    throw new Error("Payment details required");
+
+  const PLATFORM_FEE = 0.2;
+  const netAmount = credits * (1 - PLATFORM_FEE) * 5;
+  const platformFee = credits * PLATFORM_FEE * 5;
+
+  try {
+    const [payout] = await db.$transaction([
+      db.payout.create({
+        data: {
+          interviewerId: dbUser.id,
+          credits,
+          platformFee,
+          netAmount,
+          paymentMethod,
+          paymentDetail,
+          status: "PROCESSING",
+        },
+      }),
+      db.user.update({
+        where: { id: dbUser.id },
+        data: { creditBalance: { decrement: credits } },
+      }),
+    ]);
+
+    try {
+      const reviewUrl = `${process.env.NEXT_PUBLIC_APP_URL}/payout/${payout.id}`;
+      const html = await render(
+        WithdrawalRequestEmail({
+          interviewerName: dbUser.name ?? "Unknown",
+          interviewerEmail: dbUser.email,
+          credits,
+          platformFee,
+          netAmount,
+          paymentMethod,
+          paymentDetail,
+          reviewUrl,
+        })
+      );
+      await resend.emails.send({
+        from: "Prept <onboarding@resend.dev>",
+        to: ADMIN_EMAIL,
+        subject: `Withdrawal Request — ${dbUser.name} · ${credits} credits`,
+        html,
+      });
+    } catch (emailErr) {
+      console.error("Withdrawal email failed:", emailErr);
+    }
+
+    revalidatePath("/dashboard");
+    return { success: true, netAmount };
+  } catch (err) {
+    console.error(err);
+    throw new Error("Withdrawal request failed");
+  }
+};
+
+export const getWithdrawalHistory = async () => {
+  const user = await currentUser();
+  if (!user) throw new Error("Unauthorized");
+
+  const dbUser = await db.user.findUnique({ where: { clerkUserId: user.id } });
+  if (!dbUser) throw new Error("User not found");
+
+  return db.payout.findMany({
+    where: { interviewerId: dbUser.id },
+    orderBy: { createdAt: "desc" },
+  });
+};
