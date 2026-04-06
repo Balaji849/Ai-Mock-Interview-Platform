@@ -10,7 +10,7 @@ import { AI_TAGS, AVATARS, LOGOS, ROLES, SLOTS } from "@/lib/data";
 import { PricingTable } from "@clerk/nextjs";
 
 
-import { Bot, Calendar, Wallet } from "lucide-react";
+import { Bot, Calendar, Check, Wallet } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -224,8 +224,8 @@ import Link from "next/link";
                <ul className="space-y-3">
                 {role.perks.map((p) => (
                   <li key={p} className="flex gap-3 text-sm text-stone-400">
-                    <span className="mt-0.5 min-w-4 h-4 rounded-full bg-purple-400/10 border border-purple-400/20 flex items-center justify-center text-xs text-purple-400">
-                      ✓
+                    <span className="mt-0.5 min-w-5 h-5 rounded-full bg-purple-400/10 border border-purple-400/20 flex items-center justify-center text-xs text-purple-400 ">
+                      <Check size={12}/>
                     </span>
                     {p}
                   </li>

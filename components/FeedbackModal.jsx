@@ -14,6 +14,7 @@ import {
   Brain,
   CheckCircle2,
   AlertCircle,
+  Check,
 } from "lucide-react";
 import { GrayTitle } from "@/components/reusables";
 
@@ -59,7 +60,11 @@ export function FeedbackModal({
               <p className=" text-3xl">{rating.label}</p>
             </div>
 
-            <span className="text-4xl">{rating.emoji}</span>
+            <img
+  src={rating.icon}
+  alt={rating.label}
+  className="w-10 h-10"
+/>
           </div>
 
           {/* Summary */}
@@ -119,8 +124,8 @@ export function FeedbackModal({
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-[#141417] border border-white/8 rounded-xl p-5">
               <div className="flex items-center gap-2 mb-3">
-                <CheckCircle2 size={13} className="text-green-400" />
-                <p className="text-[10px] uppercase tracking-widest text-stone-500">
+                <CheckCircle2 size={20} className="text-green-400  " />
+                <p className="text-[10px] uppercase tracking-widest text-stone-300">
                   Strengths
                 </p>
               </div>
@@ -132,7 +137,7 @@ export function FeedbackModal({
                     variant="outline"
                     className="justify-start border-green-500/20 text-green-400 whitespace-normal"
                   >
-                    ✓ {s}
+                   <Check/> {s}
                   </Badge>
                 ))}
               </div>
@@ -140,8 +145,8 @@ export function FeedbackModal({
 
             <div className="bg-[#141417] border border-white/8 rounded-xl p-5">
               <div className="flex items-center gap-2 mb-3">
-                <AlertCircle size={13} className="text-purple-400" />
-                <p className="text-[10px] uppercase tracking-widest text-stone-500">
+                <AlertCircle size={20} className="text-purple-400" />
+                <p className="text-[10px] uppercase tracking-widest text-stone-300">
                   To improve
                 </p>
               </div>
@@ -153,7 +158,7 @@ export function FeedbackModal({
                     variant="outline"
                     className="justify-start border-red-500/20 text-red-400 whitespace-normal"
                   >
-                    ✓ {imp}
+                    <Check/> {imp}
                   </Badge>
                 ))}
               </div>

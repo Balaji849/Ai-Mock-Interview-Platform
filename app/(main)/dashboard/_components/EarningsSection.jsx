@@ -19,7 +19,7 @@ import {
 import { GrayTitle } from "@/components/reusables";
 import { requestWithdrawal } from "@/actions/dashboard";
 import useFetch from "@/hooks/use-fetch";
-import { CircleCheck, TrendingUp, Wallet } from "lucide-react";
+import { Check, CircleCheck, TrendingUp, Wallet } from "lucide-react";
 import { formatDate } from "@/lib/helpers";
 
 const PAYMENT_METHODS = [
@@ -190,7 +190,7 @@ export default function EarningsSection({ stats, history }) {
           {done ? (
             <div className="py-8 text-center flex flex-col items-center gap-4">
               <span className="w-14 h-14 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center text-2xl">
-                ✓
+                <Check/>
               </span>
               <p className=" text-xl">
                 <GrayTitle>Request submitted</GrayTitle>
