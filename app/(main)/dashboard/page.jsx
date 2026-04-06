@@ -6,7 +6,10 @@ import {
   getAvailability,
   getInterviewerAppointments,
   getInterviewerStats,
+  getWithdrawalHistory,
 } from "@/actions/dashboard";
+
+
 
 
 import { ClipboardList, Clock, Wallet } from "lucide-react";
@@ -26,6 +29,7 @@ export default async function InterviewerDashboardPage() {
       getAvailability(),
       getInterviewerAppointments(),
       getInterviewerStats(),
+      getWithdrawalHistory(),
 
 
     ]);

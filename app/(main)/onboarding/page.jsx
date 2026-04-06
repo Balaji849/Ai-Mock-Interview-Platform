@@ -97,7 +97,7 @@ export default function OnboardingPage() {
                 <span className="w-11 h-11 rounded-xl bg-puple-400/10 border border-puple-400/20 flex items-center justify-center text-xl mb-5">
                   {r.icon}
                 </span>
-                <h3 className="font-serif text-xl tracking-tight mb-3 text-stone-100">
+                <h3 className=" text-xl tracking-tight mb-3 text-stone-100">
                   {r.title}
                 </h3>
                 <p className="text-sm text-stone-400 font-light leading-relaxed">

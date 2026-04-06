@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { GrayTitle } from "@/components/reusables";
 import { approvePayout } from "@/actions/payout";
 import useFetch from "@/hooks/use-fetch";
+import { CheckCircle } from "lucide-react";
 
 export default function PayoutReviewClient({ payout }) {
   const [password, setPassword] = useState("");
@@ -23,8 +24,8 @@ export default function PayoutReviewClient({ payout }) {
   if (done) {
     return (
       <div className="bg-[#0f0f11] border border-white/10 rounded-2xl p-10 flex flex-col items-center gap-3 text-center">
-        <span className="text-3xl">✅</span>
-        <p className="font-serif text-xl">
+        <span className="text-3xl"><CheckCircle className="text-green-500"/></span>
+        <p className=" text-xl">
           <GrayTitle>Withdrawal approved</GrayTitle>
         </p>
         <p className="text-xs text-stone-500 font-light">
@@ -60,7 +61,7 @@ export default function PayoutReviewClient({ payout }) {
         <Separator className="bg-white/8 my-1" />
         <div className="flex justify-between text-sm font-medium">
           <span className="text-stone-300">Pay out</span>
-          <span className="font-serif text-lg bg-linear-to-br from-amber-300 to-amber-500 bg-clip-text text-transparent leading-none">
+          <span className=" text-lg bg-linear-to-br from-purple-300 to-purple-500 bg-clip-text text-transparent leading-none">
             ${payout.netAmount.toFixed(2)}
           </span>
         </div>
@@ -94,7 +95,7 @@ export default function PayoutReviewClient({ payout }) {
       )}
 
       <Button
-        variant="gold"
+        variant="purple"
         disabled={!password.trim() || loading}
         onClick={() =>
           approveFn({ payoutId: payout.id, adminPassword: password })

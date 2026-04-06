@@ -22,7 +22,7 @@ export default async function PayoutReviewPage({ params }) {
       <div className="w-full max-w-sm flex flex-col gap-6">
         <div className="text-center">
           <SectionLabel>Admin</SectionLabel>
-          <h1 className="font-serif text-4xl tracking-tighter mt-1">
+          <h1 className=" text-4xl tracking-tighter mt-1">
             <GrayTitle>Review </GrayTitle>
             <GoldTitle>Withdrawal</GoldTitle>
           </h1>
