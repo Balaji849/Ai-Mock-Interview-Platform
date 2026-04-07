@@ -44,9 +44,9 @@ import Link from "next/link";
 
           <p className="relative text-sm sm:text-base md:text-lg text-stone-400
           max-w-xl mt-6 leading-relaxed">
-            Book 1:1 mock interviews with senior engineers from top companies.
-            Get AI-powered feedback, role-specific questions, and the confidence
-            to land your dream job. Your interview success starts here.
+            Land the job you've been working toward. 1:1 mock interviews with top-tier engineers, 
+            AI-driven insights, and questions built for your exact role. Stop guessing 
+            what interviewers want - start showing them.
 
           </p>
 
@@ -238,7 +238,7 @@ import Link from "next/link";
 
       </section>
 
-        <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6 overflow-visible" id="pricing">
+        <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6 overflow-visible " id="pricing">
         <div className="text-center mb-16">
           <SectionLabel>Pricing</SectionLabel>
           <SectionHeading
@@ -249,6 +249,8 @@ import Link from "next/link";
             Each credit = one session. Unused credits roll over.
           </p>
         </div>
+        <div className="flex items-center justify-between"
+        ></div>
         <PricingTable checkoutProps={{
           appearance:{
             elements:{

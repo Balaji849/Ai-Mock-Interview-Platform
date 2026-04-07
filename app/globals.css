@@ -126,9 +126,7 @@
   }
 }
 
-body .cl-internal-b8hinb {
-  grid-template-columns: repeat(3, 1fr) !important;
-}
+
 
 @media (max-width: 640px) {
   body .cl-internal-b8hinb {

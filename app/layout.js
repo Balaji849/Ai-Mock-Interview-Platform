@@ -135,7 +135,7 @@ export default function RootLayout({ children }) {
         </div>
          {/* Connect with me */}
 <section className="flex flex-col gap-2" id="contact">
-  <p className="text-white font-semibold text-sm mb-1">Connect with me</p>
+ 
   <div className="flex  gap-4">
     <a
       href="https://github.com/Balaji849"
@@ -157,7 +157,7 @@ export default function RootLayout({ children }) {
     </a>
 
     <a
-      href="https://linkedin.com/in/yourusername"
+      href="https://www.linkedin.com/in/balaji-m-06b1772a1/"
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center gap-2 text-stone-400 hover:text-white text-sm transition-colors group"
