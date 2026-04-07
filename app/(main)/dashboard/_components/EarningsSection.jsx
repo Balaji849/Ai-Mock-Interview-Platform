@@ -104,7 +104,7 @@ export default function EarningsSection({ stats, history }) {
         ].map((stat) => (
           <div
             key={stat.label}
-            className="bg-[#0f0f11] border border-white/10 rounded-2xl p-6 flex flex-col gap-2"
+            className="bg-[#0f0f11] border-none rounded-2xl p-6 flex flex-col gap-2"
           >
             <span className="text-lg">{stat.icon}</span>
             <p
@@ -116,9 +116,9 @@ export default function EarningsSection({ stats, history }) {
             >
               {stat.value}
             </p>
-            <p className="text-xs text-stone-600">{stat.unit}</p>
+            <p className="text-xs text-stone-300">{stat.unit}</p>
 
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-stone-400">
               {stat.label}{" "}
               {stat.dollarValue !== undefined
                 ? `($${stat?.dollarValue?.toFixed(2)})`

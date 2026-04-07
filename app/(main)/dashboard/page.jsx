@@ -48,7 +48,7 @@ export default async function InterviewerDashboardPage() {
         }
         right={
           <div>
-            <p className="text-xs text-stone-600">Credit balance</p>
+            <p className="text-xs text-stone-300">Credit balance</p>
             <p className=" text-3xl leading-none bg-linear-to-br from-purple-300 to-purple-500 bg-clip-text text-transparent text-right">
               {stats?.creditBalance ?? 0}
             </p>

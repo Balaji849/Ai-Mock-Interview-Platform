@@ -22,7 +22,7 @@ const AppointmentsSection = ({appointments}) => {
         <h2 className=" text-xl tracking-tight">
           <GrayTitle>Appointments</GrayTitle>
         </h2>
-        <p className="text-xs text-stone-500 font-light mt-1">
+        <p className="text-xs text-stone-400 font-light mt-1">
           All your scheduled and past sessions.
         </p>
       </div>

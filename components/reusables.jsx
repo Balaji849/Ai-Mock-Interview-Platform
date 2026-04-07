@@ -33,7 +33,7 @@ export default function PageHeader({ label, gray, gold, description, right }) {
             {gold && <GoldTitle>{gold}</GoldTitle>}
           </h1>
           {description && (
-            <p className="text-sm text-stone-500 font-light mt-2">
+            <p className="text-sm text-stone-300 font-light mt-2">
               {description}
             </p>
           )}

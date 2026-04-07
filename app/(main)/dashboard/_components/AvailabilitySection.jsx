@@ -67,7 +67,7 @@ const AvailabilitySection = ({initial}) => {
           <h2 className=" text-xl tracking-tight">
             <GrayTitle>Daily availability window</GrayTitle>
           </h2>
-          <p className="text-xs text-stone-500 font-light mt-1">
+          <p className="text-xs text-stone-400 font-light mt-1">
             Interviewees can book within this window every day.
           </p>
         </div>
@@ -112,7 +112,7 @@ const AvailabilitySection = ({initial}) => {
           >
             {duration} window
           </Badge>
-          <span className="text-xs text-stone-600">
+          <span className="text-xs text-stone-400">
             Interviewees see this as your open booking range
           </span>
         </div>

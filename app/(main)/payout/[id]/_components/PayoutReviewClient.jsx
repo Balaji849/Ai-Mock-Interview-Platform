@@ -28,7 +28,7 @@ export default function PayoutReviewClient({ payout }) {
         <p className=" text-xl">
           <GrayTitle>Withdrawal approved</GrayTitle>
         </p>
-        <p className="text-xs text-stone-500 font-light">
+        <p className="text-xs text-stone-300 font-light">
           {payout.interviewerName} · ${payout.netAmount.toFixed(2)} via{" "}
           {payout.paymentMethod}
         </p>
