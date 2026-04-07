@@ -34,7 +34,7 @@ export default async function MyAppointmentsPage() {
         {/* ── Empty state ── */}
         {appointments.length === 0 && (
           <div className="flex flex-col items-center justify-center py-28 gap-5 text-center">
-            <span className="w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-3xl">
+            <span className="w-16 h-16 rounded-2xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center text-3xl">
               <CalendarDays size={28} className="text-purple-400" />
             </span>
             <div>

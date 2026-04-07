@@ -76,9 +76,9 @@ export default function OnboardingPage() {
             <br />
             <GoldTitle>using Prept?</GoldTitle>
           </h1>
-          <p className="text-sm text-stone-500 font-light mt-4 leading-relaxed">
+          <p className="text-sm text-stone-300 font-light mt-4 leading-relaxed">
             This helps us personalise your experience.
-            <span className="text-stone-600">
+            <span className="text-stone-400">
               {" "}
               You can&apos;t change this later.
             </span>
