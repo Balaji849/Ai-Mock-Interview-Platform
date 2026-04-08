@@ -40,7 +40,7 @@ export default async function InterviewerDashboardPage() {
       <PageHeader
         label="Interviewer dashboard"
         gray="Welcome back,"
-        gold={dbUser.name?.split(" ")[0] ?? "Interviewer"}
+        purple={dbUser.name?.split(" ")[0] ?? "Interviewer"}
         description={
           dbUser.title && dbUser.company
             ? `${dbUser.title} · ${dbUser.company}`

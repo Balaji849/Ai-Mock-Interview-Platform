@@ -8,8 +8,7 @@ export default async function ExplorePage() {
   return (
     <main className="relative min-h-screen">
   {/* Background image */}
-  <div className="absolute inset-0 bg-[url('/explore_bg.png')] bg-contain bg-no-repeat bg-center" />
-
+  <div className="absolute inset-0 bg-[url('/explore_bg.png')] bg-[length:400px_400px] bg-no-repeat bg-center mt-32" />
   {/* Overlay (controls intensity) */}
   <div className="absolute inset-0 bg-black/60" />
 
@@ -18,7 +17,7 @@ export default async function ExplorePage() {
     <PageHeader
       label="Explore"
       gray="Find your"
-      gold="expert interviewer"
+      purple="expert interviewer"
       description="Browse senior engineers from top companies."
     />
 

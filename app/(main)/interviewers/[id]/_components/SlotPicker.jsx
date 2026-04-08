@@ -124,10 +124,10 @@ export default function SlotPicker({
               </p>
             </div>
             <div className="text-right shrink-0">
-              <p className="text-xs text-stone-600">Cost</p>
+              <p className="text-xs text-stone-400">Cost</p>
               <p className=" text-2xl leading-none bg-linear-to-br from-purple-300 to-purple-500 bg-clip-text text-transparent">
                 {interviewerCredits}
-                <span className="text-xs font-sans text-stone-500 ml-1">
+                <span className="text-xs font-sans text-stone-400 ml-1">
                   cr
                 </span>
               </p>
@@ -148,13 +148,13 @@ export default function SlotPicker({
                   className={`shrink-0 flex flex-col items-center px-3.5 py-2.5 rounded-xl border text-xs transition-all duration-200 ${
                     active
                       ? "border-purple-400/40 bg-purple-400/10 text-purple-400"
-                      : "border-white/10 text-stone-500 hover:border-white/20 hover:text-stone-400"
+                      : "border-white/10 text-stone-400 hover:border-white/20 hover:text-stone-400"
                   }`}
                 >
                   <span className="font-medium">{label.top}</span>
                   <span
                     className={`mt-0.5 ${
-                      active ? "text-purple-500/70" : "text-stone-700"
+                      active ? "text-purple-500/70" : "text-stone-500"
                     }`}
                   >
                     {label.bottom}
@@ -212,7 +212,7 @@ export default function SlotPicker({
         {selectedSlot && (
           <div
             ref={summaryRef}
-            className="bg-[#0f0f11] border border-amber-400/20 rounded-2xl p-6 flex flex-col gap-4"
+            className="bg-[#0f0f11] border border-purple-400/20 rounded-2xl p-6 flex flex-col gap-4"
           >
             <p className="text-xs font-semibold text-stone-500 tracking-widest uppercase">
               Your booking

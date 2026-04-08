@@ -80,7 +80,7 @@ export default function ExploreGrid({ interviewers }) {
       {/* Grid */}
       {filtered.length === 0 ? (
         <div className="py-20 text-center">
-          <p className="text-stone-600 text-sm">
+          <p className="text-stone-200 text-sm">
             No interviewers match your filters.
           </p>
           <button

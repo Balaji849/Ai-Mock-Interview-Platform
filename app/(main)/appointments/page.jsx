@@ -26,7 +26,7 @@ export default async function MyAppointmentsPage() {
       <PageHeader
         label="My appointments"
         gray="Your interview"
-        gold="sessions"
+        purple="sessions"
         description="All your upcoming and past mock interviews in one place."
       />
 
@@ -45,7 +45,7 @@ export default async function MyAppointmentsPage() {
                 Browse expert interviewers and book your first session.
               </p>
             </div>
-            <Button variant="gold" asChild>
+            <Button variant="purple" asChild>
               <Link href="/explore">Browse interviewers →</Link>
             </Button>
           </div>

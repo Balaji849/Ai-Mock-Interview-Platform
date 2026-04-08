@@ -50,7 +50,7 @@ const interviewer = await getInterviewerProfile(id);
                 alt={interviewer.name}
                 className="rounded-2xl"
               />
-              <AvatarFallback className="rounded-2xl bg-amber-400/10 border border-amber-400/20 text-amber-400 text-3xl font-medium">
+              <AvatarFallback className="rounded-2xl bg-purple-400/10 border border-purple-400/20 text-purple-400 text-3xl font-medium">
                 {interviewer.name?.[0] ?? "?"}
               </AvatarFallback>
             </Avatar>

@@ -24,7 +24,7 @@ const InterviewerCard = ({ interviewer }) => {
   const availability = availabilities?.[0];
 
   return (
-    <Card className="relative border border-white/10 hover:border-purple-400/20">
+    <Card className="relative  hover:border-purple-400/20">
       <div className="absolute inset-0 bg-linear-to-br from-purple-400/5 via-transparent to-transparent pointer-events-none" />
       <CardContent className="flex flex-col gap-5">
         {/* Top row — avatar + name + years */}

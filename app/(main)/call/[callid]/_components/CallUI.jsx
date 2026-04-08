@@ -98,7 +98,7 @@ const CallUI = ({
           {isInterviewer && (
             <Badge
               variant="outline"
-              className="border-amber-400/20 bg-purple-400/5 text-purple-400 text-xs"
+              className="border-purple-400/20 bg-purple-400/5 text-purple-400 text-xs"
             >
               Interviewer
             </Badge>
@@ -123,7 +123,7 @@ const CallUI = ({
                     <MessageSquare size={13} />
                    Chat
                    </TabsTrigger>
-                    {true && <TabsTrigger value="questions" className={"w-1/2"}>
+                    {isInterviewer && <TabsTrigger value="questions" className={"w-1/2"}>
                         {" "}
                         <Sparkles size={13}/>
                         AI Question
@@ -145,10 +145,16 @@ const CallUI = ({
                   <Loader2 size={18} className="text-stone-600 animate-spin" />
                 </div>)}
                 </TabsContent>
-                   <TabsContent value="questions">
+                {
+                  isInterviewer&&(
+                    <TabsContent value="questions">
 
                      <AIQuestionsPanel categories={booking.categories} />
                    </TabsContent>
+
+                  )
+                }
+                   
             </Tabs>
         
         </div>
