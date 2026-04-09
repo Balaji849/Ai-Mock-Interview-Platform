@@ -10,7 +10,7 @@ export const completeOnboarding = async (data) => {
        throw new Error("Unauthorized");
     }
 
-    const { role, title, company, yearsExp, bio, categories } = data;
+    const { role, name, title, company, yearsExp, bio, categories } = data;
 
      if (!role || !["INTERVIEWEE", "INTERVIEWER"].includes(role)) {
     throw new Error("Invalid role");
@@ -26,6 +26,7 @@ try {
       where: { clerkUserId: user.id },
       data: {
         role,
+        ...(name && { name }),
         ...(role === "INTERVIEWER" && {
           title,
           company,

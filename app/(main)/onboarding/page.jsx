@@ -18,6 +18,7 @@ export default function OnboardingPage() {
 
   const [role, setRole] = useState(null);
   const [form, setForm] = useState({
+    name: "",
     title: "",
     company: "",
     yearsExp: "",
@@ -41,20 +42,24 @@ export default function OnboardingPage() {
   };
 
   const isInterviewerValid =
+    form.name.trim() &&
     form.title.trim() &&
     form.company.trim() &&
     form.yearsExp &&
     form.bio.trim() &&
     form.categories.length > 0;
 
+  const isIntervieweeValid = form.name.trim().length > 0;
+
   const canSubmit =
-    role === "INTERVIEWEE" || (role === "INTERVIEWER" && isInterviewerValid);
+    (role === "INTERVIEWEE" && isIntervieweeValid) || (role === "INTERVIEWER" && isInterviewerValid);
 
   const handleSubmit = () => {
     if (!canSubmit) return;
 
     onboardingFn({
       role,
+      name: form.name.trim(),
       ...(role === "INTERVIEWER" && {
         title: form.title,
         company: form.company,
@@ -128,9 +133,23 @@ export default function OnboardingPage() {
               </Button>
             </div>
 
-            {/* interviewer form */}
+            {/* Common form for all roles */}
+            <div className="bg-[#0f0f11] border border-white/10 rounded-2xl p-8 flex flex-col gap-6">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="name">Full Name</Label>
+                <Input
+                  id="name"
+                  placeholder="John Doe"
+                  value={form.name}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, name: e.target.value }))
+                  }
+                />
+              </div>
+
+            {/* interviewer specific form */}
             {role === "INTERVIEWER" && (
-              <div className="bg-[#0f0f11] border border-white/10 rounded-2xl p-8 flex flex-col gap-6">
+              <>
                 {/* Title + Company */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
@@ -212,8 +231,9 @@ export default function OnboardingPage() {
                     setForm((p) => ({ ...p, bio: e.target.value }))
                   }
                 />
-              </div>
+              </>
             )}
+            </div>
 
             <Button
               variant="puple"
